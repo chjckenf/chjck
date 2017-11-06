@@ -42,7 +42,8 @@ def lotos(data, numbers):
 @click.command()
 @click.argument('numbers', nargs=-1)
 def solve(numbers):
-    ''' Kiem tra so nhap vao co trung lo hay khong. Neu khong nhap so nao, se tra ve tat ca cac giai '''
+    ''' Kiem tra so nhap vao co trung lo hay khong. 
+    Neu khong nhap so nao, se tra ve tat ca cac giai '''
     resp = requests.get('http://ketqua.net/')
     data = BS(resp.text, 'lxml')
 

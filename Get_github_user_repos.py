@@ -19,7 +19,6 @@ def solve(user):
     resp = requests.get('https://api.github.com/users'
                         '/{}/repos'.format(user))
     status_code = resp.status_code // 100
-
     if status_code == 4:
         return 'User not found. Please try again'
     elif status_code == 5:
