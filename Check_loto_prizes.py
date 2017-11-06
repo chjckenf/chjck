@@ -9,7 +9,7 @@ def loto_prizes(data):
 
     prizes = [i for i in loto_prizes if i.isnumeric()]
 
-    try :
+    try:
         result = '''
     Đặc biệt:\t{}\n
     Giải nhất:\t{}\n
@@ -28,11 +28,13 @@ def loto_prizes(data):
 
 def lotos(data, numbers):
     lotos = data.find(id="loto_mb").find('tbody').get_text(' ').split()
+    lotos = [int(i) for i in lotos]
 
     result = []
     for number in numbers:
         if number in lotos:
-            result.append('{} trung {} nhay'.format(number, lotos.count(number)))
+            result.append('{} trung {} nhay'.format(
+                number, lotos.count(number)))
         else:
             result.append('{} khong trung'.format(number))
 
@@ -42,7 +44,7 @@ def lotos(data, numbers):
 @click.command()
 @click.argument('numbers', nargs=-1)
 def solve(numbers):
-    ''' Kiem tra so nhap vao co trung lo hay khong. 
+    ''' Kiem tra so nhap vao co trung lo hay khong.
     Neu khong nhap so nao, se tra ve tat ca cac giai '''
     resp = requests.get('http://ketqua.net/')
     data = BS(resp.text, 'lxml')
@@ -51,7 +53,7 @@ def solve(numbers):
         click.echo(loto_prizes(data))
     else:
         try:
-            temp = [int(number) for number in numbers]
+            numbers = [int(number) for number in numbers]
         except ValueError:
             click.echo('Chi nhan so')
         else:
