@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h1 > Jobs list </h1>
+  <ul class=entries>
+  {% for job in jobs %}
+    <li>
+      <h2>
+        <a href="/{{ job.numb }}"> {{ job.name }} </a>
+      </h2>
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}
